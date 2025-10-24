@@ -1,6 +1,6 @@
 # AI Background Removal SaaS App
 
-Vercel Link:[ https://bg-removalmernc.vercel.app/]([url](https://bg-removalmernc.vercel.app/))
+Vercel Link:[ https://bg-removalmernc.vercel.app/](https://bg-removalmernc.vercel.app/)
 
 An AI-powered background removal platform that allows users to upload images, process them automatically, and download background-free results with credit-based usage.
 
