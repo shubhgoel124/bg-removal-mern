@@ -3,6 +3,8 @@ import userModel from "../models/userModel.js"
 import transactionModel from "../models/transactionModel.js"
 import razorpay from 'razorpay';
 
+const DEFAULT_SIGNUP_CREDITS = 5;
+
 // Gateway Initialize
 const razorpayInstance = new razorpay({
     key_id: process.env.RAZORPAY_KEY_ID,
@@ -81,6 +83,65 @@ const userCredits = async (req, res) => {
         const userData = await userModel.findOne({ clerkId })
         res.json({ success: true, credits: userData.creditBalance })
 
+    } catch (error) {
+        console.log(error.message)
+        res.json({ success: false, message: error.message })
+    }
+}
+
+// Public API to return platform-level usage stats from real database records
+const platformStats = async (req, res) => {
+    try {
+        const totalUsers = await userModel.countDocuments();
+
+        const result = await userModel.aggregate([
+            {
+                $lookup: {
+                    from: 'transactions',
+                    let: { cid: '$clerkId' },
+                    pipeline: [
+                        { $match: { $expr: { $and: [
+                            { $eq: ['$clerkId', '$$cid'] },
+                            { $eq: ['$payment', true] }
+                        ]}}},
+                        { $group: { _id: null, total: { $sum: '$credits' } } }
+                    ],
+                    as: 'purchases'
+                }
+            },
+            {
+                $addFields: {
+                    purchasedCredits: {
+                        $ifNull: [{ $arrayElemAt: ['$purchases.total', 0] }, 0]
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    totalProcessedImages: {
+                        $sum: {
+                            $max: [
+                                { $subtract: [
+                                    { $add: [DEFAULT_SIGNUP_CREDITS, '$purchasedCredits'] },
+                                    '$creditBalance'
+                                ]},
+                                0
+                            ]
+                        }
+                    }
+                }
+            }
+        ]);
+
+        res.setHeader('Cache-Control', 'public, s-maxage=15, stale-while-revalidate=30');
+        res.json({
+            success: true,
+            stats: {
+                totalUsers,
+                totalProcessedImages: result[0]?.totalProcessedImages || 0,
+            },
+        });
     } catch (error) {
         console.log(error.message)
         res.json({ success: false, message: error.message })
@@ -199,4 +260,4 @@ const verifyRazorpay = async (req, res) => {
     }
 }
 
-export { clerkWebhooks, userCredits, paymentRazorpay, verifyRazorpay }
+export { clerkWebhooks, userCredits, platformStats, paymentRazorpay, verifyRazorpay }

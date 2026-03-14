@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { assets } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
+import AnimatedCounter from './AnimatedCounter'
 
 const Header = () => {
 
-    const { removeBG } = useContext(AppContext)
+    const { removeBG, platformStats } = useContext(AppContext)
+    const numberFormatter = new Intl.NumberFormat('en-IN')
 
     return (
         <div className='fade-up mx-4 mt-8 grid items-center gap-12 px-2 sm:mt-14 lg:mx-16 lg:grid-cols-2 lg:px-6'>
@@ -21,6 +23,21 @@ const Header = () => {
                         <img width={20} src={assets.upload_btn_icon} alt="" />
                         <p>Upload your image</p>
                     </label>
+                </div>
+
+                <div className='mt-7 grid max-w-md grid-cols-2 gap-3'>
+                    <div className='rounded-2xl border border-[#0f766e]/20 bg-white/80 p-4 shadow-sm'>
+                        <p className='text-xs uppercase tracking-[0.14em] text-slate-500'>Images Processed</p>
+                        <p className='mt-1 text-2xl font-bold text-[#0f172a]'>
+                            <AnimatedCounter value={platformStats.totalProcessedImages} formatter={numberFormatter} />
+                        </p>
+                    </div>
+                    <div className='rounded-2xl border border-[#0f766e]/20 bg-white/80 p-4 shadow-sm'>
+                        <p className='text-xs uppercase tracking-[0.14em] text-slate-500'>Total Users</p>
+                        <p className='mt-1 text-2xl font-bold text-[#0f172a]'>
+                            <AnimatedCounter value={platformStats.totalUsers} formatter={numberFormatter} />
+                        </p>
+                    </div>
                 </div>
             </div>
             {/* -------- Right Side -------- */}

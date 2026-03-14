@@ -1,11 +1,19 @@
-import React from 'react'
+import { useContext, useEffect } from 'react'
 import Header from '../components/Header'
 import Steps from '../components/Steps'
 import BgSlider from '../components/BgSlider'
 import Testimonials from '../components/Testimonials'
 import Upload from '../components/Upload'
+import { AppContext } from '../context/AppContext'
 
 const Home = () => {
+    const { startStatsPolling, stopStatsPolling } = useContext(AppContext)
+
+    useEffect(() => {
+        startStatsPolling()
+        return () => stopStatsPolling()
+    }, [startStatsPolling, stopStatsPolling])
+
     return (
         <main className='relative overflow-hidden'>
             <section className='relative z-10'>
