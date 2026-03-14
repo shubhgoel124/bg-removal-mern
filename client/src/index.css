@@ -1,11 +1,106 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-  font-family: Outfit;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+body {
+  color: #0f172a;
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(20, 184, 166, 0.2), transparent 60%),
+    radial-gradient(900px 450px at 90% 0%, rgba(245, 158, 11, 0.22), transparent 60%),
+    linear-gradient(180deg, #f8fafc 0%, #f0fdfa 45%, #f8fafc 100%);
+}
+
+.bg-app {
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(20, 184, 166, 0.2), transparent 60%),
+    radial-gradient(900px 450px at 90% 0%, rgba(245, 158, 11, 0.22), transparent 60%),
+    linear-gradient(180deg, #f8fafc 0%, #f0fdfa 45%, #f8fafc 100%);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(15, 118, 110, 0.22);
+}
+
+.fade-up {
+  animation: fade-up 600ms ease-out both;
+}
+
+.section-shell {
+  position: relative;
+  margin: 0 auto;
+  width: min(1220px, calc(100% - 1.5rem));
+  border-radius: 28px;
+}
+
+.section-shell + .section-shell {
+  margin-top: 1rem;
+}
+
+.section-shell-soft {
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(240, 253, 250, 0.82));
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.07);
+}
+
+.section-shell-plain {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.section-shell::before {
+  content: '';
+  position: absolute;
+  inset: 10% auto auto -40px;
+  width: 100px;
+  height: 100px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.3), rgba(20, 184, 166, 0));
+  pointer-events: none;
+}
+
+.section-shell::after {
+  content: '';
+  position: absolute;
+  inset: auto -45px 12% auto;
+  width: 120px;
+  height: 120px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.28), rgba(245, 158, 11, 0));
+  pointer-events: none;
+}
+
+.section-inner {
+  position: relative;
+  z-index: 2;
+  padding-top: 0.2rem;
+}
+
+.section-shell-rise {
+  animation: fade-up 650ms ease-out both;
+}
+
+.section-shell-rise-delay {
+  animation: fade-up 800ms ease-out both;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .slider {
@@ -26,4 +121,17 @@
 
 .bg-layer {
   background-image: url(/bg_layer.png);
+}
+
+@media (max-width: 768px) {
+  .section-shell {
+    width: calc(100% - 0.75rem);
+    border-radius: 20px;
+  }
+
+  .section-shell::before,
+  .section-shell::after {
+    width: 72px;
+    height: 72px;
+  }
 }

@@ -9,26 +9,26 @@ const Result = () => {
   const { resultImage, image } = useContext(AppContext)
 
   return (
-    <div className='mx-4 my-3 lg:mx-44 mt-14 min-h-[75vh]'>
+    <div className='mx-4 mt-8 min-h-[75vh] lg:mx-16'>
 
-      <div className='bg-white rounded-lg px-8 py-6 drop-shadow-sm'>
+      <div className='glass-card rounded-3xl px-5 py-6 shadow-md sm:px-8'>
 
         {/* --------- Images Container --------- */}
-        <div className='flex flex-col sm:grid grid-cols-2 gap-8'>
+        <div className='grid grid-cols-1 gap-8 sm:grid-cols-2'>
 
           {/* --------- Left Side --------- */}
           <div>
-            <p className='font-semibold text-gray-600 mb-2'>Original</p>
-            <img className='rounded-md border' src={image ? URL.createObjectURL(image) : ''} alt='' />
+            <p className='mb-2 font-semibold text-slate-700'>Original</p>
+            <img className='rounded-xl border border-slate-200' src={image ? URL.createObjectURL(image) : ''} alt='' />
           </div>
 
           {/* --------- Right Side --------- */}
           <div className='flex flex-col'>
-            <p className='font-semibold text-gray-600 mb-2'>Background Removed</p>
-            <div className='rounded-md border border-gray-300 h-full relative bg-layer'>
+            <p className='mb-2 font-semibold text-slate-700'>Background Removed</p>
+            <div className='bg-layer relative h-full rounded-xl border border-slate-300'>
               <img src={resultImage ? resultImage : ""} alt='' />
               {!resultImage && image && <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
-                <div className="border-4 border-violet-600 rounded-full h-12 w-12 border-t-transparent animate-spin"></div>
+                <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#0f766e] border-t-transparent"></div>
               </div>}
             </div>
           </div>
@@ -36,9 +36,9 @@ const Result = () => {
         </div>
 
         {/* --------- Buttons --------- */}
-        {resultImage && <div className='flex justify-center sm:justify-end items-center flex-wrap gap-4 mt-6'>
-          <button onClick={() => navigate('/')} className='px-8 py-2.5 text-violet-600 text-sm border border-violet-600 rounded-full hover:scale-105 transition-all duration-700'>Try another image</button>
-          <a href={resultImage} className='px-8 py-2.5 text-white text-sm bg-gradient-to-r from-violet-600 to-fuchsia-500 rounded-full hover:scale-105 transition-all duration-700' download>Download image</a>
+        {resultImage && <div className='mt-6 flex flex-wrap items-center justify-center gap-4 sm:justify-end'>
+          <button onClick={() => navigate('/')} className='rounded-full border border-[#0f766e] px-8 py-2.5 text-sm text-[#0f766e] transition hover:bg-[#ccfbf1]'>Try another image</button>
+          <a href={resultImage} className='rounded-full bg-[#0f766e] px-8 py-2.5 text-sm text-white transition hover:bg-[#115e59]' download>Download image</a>
         </div>}
 
       </div>

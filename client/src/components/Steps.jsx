@@ -3,33 +3,33 @@ import { assets } from '../assets/assets'
 
 const Steps = () => {
     return (
-        <div className='mx-4 lg:mx-44 py-20 xl:py-40 '>
+        <div className='mx-4 py-20 lg:mx-16 xl:py-28'>
 
-            <h1 className='text-center text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text text-transparent'>Steps to remove background <br /> image in seconds.</h1>
+            <h1 className='text-center text-2xl font-semibold text-[#0f172a] md:text-3xl lg:text-4xl'>Three steps to studio-ready cutouts</h1>
 
-            <div className=' flex items-start flex-wrap gap-4 mt-16 xl:mt-24 justify-center'>
+            <div className='mt-12 grid grid-cols-1 gap-5 md:grid-cols-3 xl:mt-16'>
 
-                <div className='flex items-start gap-4 bg-white border drop-shadow-md p-7 pb-10 rounded hover:scale-105 transition-all duration-500'>
-                    <img className='max-w-9' src={assets.upload_icon} alt="" />
+                <div className='glass-card rounded-2xl p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md'>
+                    <img className='max-w-9' src={assets.upload_icon} alt="Upload" />
                     <div>
-                        <p className='text-xl font-medium'>Upload image</p>
-                        <p className='text-sm text-neutral-500 mt-1'>This is a demo text, will replace it later. <br /> This is a demo..</p>
+                        <p className='mt-4 text-xl font-semibold'>Upload image</p>
+                        <p className='mt-2 text-sm text-slate-600'>Drop a JPG or PNG and we start processing instantly.</p>
                     </div>
                 </div>
 
-                <div className='flex items-start gap-4 bg-white border drop-shadow-md p-7 pb-10 rounded hover:scale-105 transition-all duration-500'>
-                    <img className='max-w-9' src={assets.remove_bg_icon} alt="" />
+                <div className='glass-card rounded-2xl p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md'>
+                    <img className='max-w-9' src={assets.remove_bg_icon} alt="Remove background" />
                     <div>
-                        <p className='text-xl font-medium'>Remove background</p>
-                        <p className='text-sm text-neutral-500 mt-1'>This is a demo text, will replace it later. <br /> This is a demo..</p>
+                        <p className='mt-4 text-xl font-semibold'>AI removes background</p>
+                        <p className='mt-2 text-sm text-slate-600'>Our model isolates your subject with sharp edges and high accuracy.</p>
                     </div>
                 </div>
 
-                <div className='flex items-start gap-4 bg-white border drop-shadow-md p-7 pb-10 rounded hover:scale-105 transition-all duration-500'>
-                    <img className='max-w-9' src={assets.download_icon} alt="" />
+                <div className='glass-card rounded-2xl p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md'>
+                    <img className='max-w-9' src={assets.download_icon} alt="Download" />
                     <div>
-                        <p className='text-xl font-medium'>Download image</p>
-                        <p className='text-sm text-neutral-500 mt-1'>This is a demo text, will replace it later. <br /> This is a demo..</p>
+                        <p className='mt-4 text-xl font-semibold'>Download and use</p>
+                        <p className='mt-2 text-sm text-slate-600'>Export your transparent image and publish it anywhere.</p>
                     </div>
                 </div>
 

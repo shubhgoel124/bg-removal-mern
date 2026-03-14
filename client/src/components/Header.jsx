@@ -7,24 +7,25 @@ const Header = () => {
     const { removeBG } = useContext(AppContext)
 
     return (
-        <div className='flex items-center justify-between max-sm:flex-col-reverse gap-y-10 px-4 mt-10 lg:px-44 sm:mt-20'>
+        <div className='fade-up mx-4 mt-8 grid items-center gap-12 px-2 sm:mt-14 lg:mx-16 lg:grid-cols-2 lg:px-6'>
             {/* -------- Left Side --------- */}
-            <div>
-                <h1 className='text-4xl xl:text-5xl 2xl:text-6xl font-bold text-neutral-700 leading-tight'>
-                    Remove the <br className='max-md:hidden' /> <span className='bg-gradient-to-r from-violet-600 to-fuchsia-500 bg-clip-text text-transparent'>background</span> from <br className='max-md:hidden' /> images for free.
+            <div className='order-2 lg:order-1'>
+                <p className='mb-4 inline-flex rounded-full border border-[#0f766e]/30 bg-white/70 px-4 py-1 text-xs font-medium uppercase tracking-[0.2em] text-[#0f766e]'>AI-powered studio</p>
+                <h1 className='text-4xl font-bold leading-tight text-[#0f172a] sm:text-5xl xl:text-6xl'>
+                    Remove image backgrounds in <span className='text-[#0f766e]'>one click</span>
                 </h1>
-                <p className='my-6 text-[15px] text-gray-500'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. <br className='max-sm:hidden' /> Lorem Ipsum has been the industry's standard dummy text ever.</p>
+                <p className='my-6 max-w-xl text-sm text-slate-600 sm:text-base'>Upload any photo and get a clean cutout in seconds. Built for creators, stores, and teams that need quick, polished visuals.</p>
                 <div>
                     <input onChange={e => removeBG(e.target.files[0])} type="file" id="upload1" accept='image/*' hidden />
-                    <label htmlFor='upload1' className='inline-flex gap-3 px-8 py-3.5 rounded-full  cursor-pointer bg-gradient-to-r from-violet-600 to-fuchsia-500 m-auto hover:scale-105 transition-all duration-700'>
+                    <label htmlFor='upload1' className='inline-flex cursor-pointer items-center gap-3 rounded-full bg-[#0f766e] px-8 py-3.5 text-sm font-medium text-white transition hover:bg-[#115e59]'>
                         <img width={20} src={assets.upload_btn_icon} alt="" />
-                        <p className='text-white text-sm'>Upload your image</p>
+                        <p>Upload your image</p>
                     </label>
                 </div>
             </div>
             {/* -------- Right Side -------- */}
-            <div className='w-full max-w-md'>
-                <img src={assets.header_img} alt="" />
+            <div className='glass-card order-1 w-full max-w-md justify-self-center overflow-hidden rounded-3xl p-4 shadow-lg lg:order-2 lg:max-w-lg'>
+                <img className='rounded-2xl' src={assets.header_img} alt="" />
             </div>
         </div>
     )

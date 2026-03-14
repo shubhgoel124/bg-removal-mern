@@ -4,23 +4,23 @@ import { testimonialsData } from '../assets/assets';
 const Testimonials = () => {
 
     return (
-        <div>
+        <div className='mx-4 py-6 lg:mx-16'>
 
             {/* Title */}
-            <h1 className='text-center py-5 lg:py-20 text-2xl md:text-3xl lg:text-4xl font-semibold bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text text-transparent'>Customer Testimonials</h1>
+            <h1 className='py-5 text-center text-2xl font-semibold text-[#0f172a] lg:py-14 md:text-3xl lg:text-4xl'>What creators say</h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto px-4 py-8">
+            <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 py-8 md:grid-cols-2">
 
                 {
                     testimonialsData.map((item, index) => (
-                        <div key={index} className='bg-white rounded-xl p-6 drop-shadow-md max-w-lg m-auto hover:scale-105 transition-all duration-700'>
-                            <p className='text-4xl text-gray-500'>”</p>
-                            <p className='text-sm text-gray-500'>{item.text}</p>
-                            <div className='flex items-center gap-3 mt-5'>
+                        <div key={index} className='glass-card rounded-2xl p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md'>
+                            <p className='text-4xl text-[#0f766e]'>"</p>
+                            <p className='text-sm text-slate-600'>{item.text}</p>
+                            <div className='mt-5 flex items-center gap-3'>
                                 <img className='w-9 rounded-full' src={item.image} alt="" />
                                 <div>
-                                    <p className='text'>{item.author}</p>
-                                    <p className='text-sm text-gray-600'>{item.jobTitle}</p>
+                                    <p className='font-medium text-slate-800'>{item.author}</p>
+                                    <p className='text-sm text-slate-500'>{item.jobTitle}</p>
                                 </div>
                             </div>
                         </div>

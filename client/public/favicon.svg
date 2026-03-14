@@ -1,4 +1,12 @@
-<svg width="58" height="42" viewBox="0 0 58 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M18.7282 0H44.2018L25.4736 27.7589H0L18.7282 0Z" fill="#007AFF"/>
-<path d="M19.8437 30.3314L12.5899 41.0831H39.2718L58 13.3242H38.3071L26.8327 30.3314H19.8437Z" fill="#312ECB"/>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="faviconGradient" x1="11" y1="8" x2="52" y2="56" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#0F766E"/>
+			<stop offset="1" stop-color="#F59E0B"/>
+		</linearGradient>
+	</defs>
+	<rect x="8" y="8" width="48" height="48" rx="14" fill="url(#faviconGradient)"/>
+	<path d="M20 20H33C38.5228 20 43 24.4772 43 30C43 35.5228 38.5228 40 33 40H20V20Z" fill="#F8FAFC"/>
+	<path d="M26 24H34C37.3137 24 40 26.6863 40 30C40 33.3137 37.3137 36 34 36H26V24Z" fill="#0F766E"/>
+	<circle cx="40" cy="22" r="4" fill="#F8FAFC"/>
 </svg>

@@ -59,44 +59,28 @@ const BuyCredit = () => {
     }
   }
 
-  const paymentStripe = async (planId) => {
-    try {
-
-      const token = await getToken()
-      const { data } = await axios.post(backendUrl + '/api/user/pay-stripe', { planId }, { headers: { token } })
-      if (data.success) {
-        const { session_url } = data
-        window.location.replace(session_url)
-      } else {
-        toast.error(data.message)
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error(error.message)
-    }
-  }
-
   return (
-    <div className='min-h-[80vh] text-center pt-14 mb-10'>
-      <button className='border border-gray-400 px-10 py-2 rounded-full mb-6'>Our Plans</button>
-      <h1 className='text-center mb-6 sm:mb-10 text-2xl md:text-3xl lg:text-4xl font-semibold bg-gradient-to-r from-gray-900 to-gray-400 bg-clip-text text-transparent'>Choose the plan that's right for you</h1>
-      <div className='flex flex-wrap justify-center gap-6 text-left'>
+    <div className='relative min-h-[80vh] px-4 py-14 lg:px-16'>
+      <div className='mx-auto max-w-6xl text-center'>
+        <button className='rounded-full border border-[#0f766e]/40 bg-white/70 px-8 py-2 text-sm font-medium text-[#0f766e] shadow-sm backdrop-blur'>Credit Packs</button>
+        <h1 className='mt-5 text-3xl font-bold leading-tight text-[#0f172a] sm:text-4xl lg:text-5xl'>Choose a plan and top up in seconds</h1>
+        <p className='mx-auto mt-3 max-w-2xl text-sm text-slate-600 sm:text-base'>Pay once with Razorpay and immediately unlock more background removals.</p>
+      </div>
+
+      <div className='mx-auto mt-10 grid max-w-6xl grid-cols-1 gap-6 text-left md:grid-cols-2 lg:grid-cols-3'>
         {plans.map((item, index) => (
-          <div className='bg-white drop-shadow-sm border rounded-lg py-12 px-8 text-gray-700 hover:scale-105 transition-all duration-500' key={index}>
+          <div className='group rounded-3xl border border-[#0f766e]/20 bg-white/80 p-8 text-slate-700 shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-xl' key={index}>
             <img width={40} src={assets.logo_icon} alt='' />
-            <p className='mt-3 font-semibold'>{item.id}</p>
-            <p className='text-sm'>{item.desc}</p>
-            <p className='my-6'>
-              <span className='tex3xl font-medium'>₹{item.price} </span>/ {item.credits} credits
+            <p className='mt-4 text-lg font-semibold'>{item.id}</p>
+            <p className='mt-1 text-sm text-slate-500'>{item.desc}</p>
+            <p className='my-6 text-lg'>
+              <span className='text-3xl font-bold text-[#0f172a]'>₹{item.price}</span> for {item.credits} credits
             </p>
-            <div className='flex flex-col'>
-              <button onClick={() => paymentRazorpay(item.id)} className='w-full flex justify-center gap-2 border border-gray-400 mt-2 text-sm rounded-md py-2.5 min-w-52 hover:bg-blue-50 hover:border-blue-400'>
-                <img className='h-4' src={assets.razorpay_logo} alt="" />
-              </button>
-              <button onClick={() => paymentStripe(item.id)} className='w-full flex justify-center gap-2 border border-gray-400 mt-2 text-sm rounded-md py-2.5 min-w-52 hover:bg-blue-50 hover:border-blue-400'>
-                <img className='h-4' src={assets.stripe_logo} alt="" />
-              </button>
-            </div>
+
+            <button onClick={() => paymentRazorpay(item.id)} className='mt-3 flex w-full items-center justify-center gap-3 rounded-xl border border-[#0f766e]/40 bg-[#0f766e] px-4 py-3 text-sm font-medium text-white transition hover:bg-[#115e59]'>
+              <img className='h-4' src={assets.razorpay_logo} alt="Razorpay" />
+              Continue with Razorpay
+            </button>
           </div>
         ))}
       </div>

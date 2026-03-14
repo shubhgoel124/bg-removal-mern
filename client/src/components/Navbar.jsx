@@ -18,21 +18,23 @@ const Navbar = () => {
     }, [isSignedIn])
 
     return (
-        <div className='flex items-center justify-between mx-4 py-3 lg:mx-44 '>
-            <Link to={'/'}><img className='w-32 sm:w-44' src={assets.logo} alt="" /></Link>
+        <div className='mx-4 py-4 lg:mx-16'>
+            <div className='glass-card fade-up flex items-center justify-between rounded-2xl px-4 py-3 shadow-sm sm:px-6'>
+                <Link to={'/'}><img className='w-32 sm:w-40' src={assets.logo} alt="" /></Link>
             {isSignedIn
                 ? <div className='flex items-center gap-2 sm:gap-3'>
-                    <button onClick={() => navigate('/buy')} className='flex items-center gap-2 bg-blue-100 px-4 sm:px-7 py-1.5 sm:py-2.5 rounded-full hover:scale-105 transition-all duration-700'>
+                    <button onClick={() => navigate('/buy')} className='flex items-center gap-2 rounded-full border border-[#0f766e]/30 bg-[#ccfbf1] px-4 py-1.5 text-xs font-medium text-[#134e4a] transition hover:-translate-y-0.5 sm:px-6 sm:py-2 sm:text-sm'>
                         <img className='w-5' src={assets.credit_icon} alt='' />
-                        <p className='text-xs sm:text-sm font-medium text-gray-600'>Credits : {credit}</p>
+                        <p>Credits: {credit}</p>
                     </button>
-                    <p className='text-gray-600 max-sm:hidden'>Hi, {user.fullName}</p>
+                    <p className='hidden text-sm text-slate-700 sm:block'>Hi, {user.fullName}</p>
                     <UserButton />
                 </div>
-                : <button onClick={() => openSignIn({})} className='bg-zinc-800 text-white flex items-center gap-4 px-4 py-2 sm:px-8 sm:py-3  text-sm rounded-full'>
-                    Get started <img className='w-3 sm:w-4' src={assets.arrow_icon} alt="" />
+                : <button onClick={() => openSignIn({})} className='flex items-center gap-3 rounded-full bg-[#0f172a] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#1e293b] sm:px-7 sm:py-2.5'>
+                    Get Started <img className='w-3 sm:w-4' src={assets.arrow_icon} alt="" />
                 </button>
             }
+            </div>
         </div>
     )
 }
